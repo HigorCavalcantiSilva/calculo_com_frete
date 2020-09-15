@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Calculo de Compras</title>
+    <style>
+      body {
+        background-color: cornflowerblue;
+      }
+      button {
+        float: right;
+      }
+      #tot {
+        background-color: cadetblue;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+        color: white;
+      }
+      #desc {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Calcule com Frete</h1>
+      <br>
+      <div>
+        <h4>Valor do produto (R$):</h4>
+        <input type="number" id="preco" class="form-control">
+      </div>
+      <div>
+        <h4>Desconto (%):</h4>
+        <input type="number" id="desconto" class="form-control">
+      </div>
+      <div>
+        <h4>Valor do Frete (R$):</h4>
+        <input type="number" id="frete" class="form-control">
+      </div>
+      <br>
+      <div>
+        <button onclick="calcular()" class="btn btn-success">Calcular</button>
+      </div>
+      <br><br>
+      <div id="tot">
+        <h2 id="res"></h2>
+        <br>
+        <h4 id="desc"></h4>
+      </div>
+      <br>
+    </div>
+    <script>
+      function calcular(){
+        let preco = parseFloat(document.getElementById("preco").value);
+        let desconto = parseFloat(document.getElementById("desconto").value);
+        let frete = parseFloat(document.getElementById("frete").value);
+
+        let prct = preco / 100 * desconto;
+        let total = preco - prct;
+
+        total += frete;
+
+        document.getElementById("res").innerText = "R$ " + total.toFixed(2).replace(".", ",");
+        document.getElementById("desc").innerText = "R$ " + prct.toFixed(2).replace(".", ",") + " a menos que o valor total do produto";
+      }
+    </script>
+  </body>
+
+</html>
