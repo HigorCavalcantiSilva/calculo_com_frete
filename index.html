@@ -62,11 +62,16 @@
 
         let prct = preco / 100 * desconto;
         let total = preco - prct;
+        let diff = prct - frete;
 
         total += frete;
 
         document.getElementById("res").innerText = "R$ " + total.toFixed(2).replace(".", ",");
-        document.getElementById("desc").innerText = "R$ " + prct.toFixed(2).replace(".", ",") + " a menos que o valor total do produto";
+        if(diff < 0){
+          document.getElementById("desc").innerText = "R$ " + Math.abs(diff).toFixed(2).replace(".", ",") + " a mais que o valor total do produto";
+        } else {
+          document.getElementById("desc").innerText = "R$ " + diff.toFixed(2).replace(".", ",") + " a menos que o valor total do produto";
+        }
       }
     </script>
   </body>
